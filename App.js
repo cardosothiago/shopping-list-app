@@ -6,11 +6,11 @@ export default function App() {
     <>
       <View style={styles.container}>
         <View style={styles.Body}>
-          <Text>Hello Word!</Text>
+          <Text>TELA INICIAL DO APLICATIVO!</Text>
         </View>
         <View style={styles.Form}>
           <TextInput style={styles.Input} />
-          <TouchableOpacity />
+          <TouchableOpacity style={styles.Button} />
         </View>
       </View>
     </>
@@ -48,5 +48,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: "#eee"
+  },
+  Button: {
+    height: 40,
+    width: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#1c6cce",
+    borderRadius: 4,
+    marginLeft: 10
   }
 });
