@@ -9,7 +9,13 @@ export default function App() {
           <Text>TELA INICIAL DO APLICATIVO!</Text>
         </View>
         <View style={styles.Form}>
-          <TextInput style={styles.Input} />
+          <TextInput
+            style={styles.Input}
+            placeholderTextColor="#999"
+            autoCorrect={true}
+            placeholder="Adicione um item na sua lista de compras"
+            maxLength={100}
+          />
           <TouchableOpacity style={styles.Button} />
         </View>
       </View>
@@ -37,7 +43,6 @@ const styles = StyleSheet.create({
     paddingTop: 13,
     borderTopWidth: 1,
     borderColor: "#eee",
-    backgroundColor: "#777"
   },
   Input: {
     flex: 1,
