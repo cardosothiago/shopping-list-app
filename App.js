@@ -9,7 +9,7 @@ export default function App() {
           <Text>Hello Word!</Text>
         </View>
         <View style={styles.Form}>
-          <TextInput />
+          <TextInput style={styles.Input} />
           <TouchableOpacity />
         </View>
       </View>
@@ -36,6 +36,17 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingTop: 13,
     borderTopWidth: 1,
+    borderColor: "#eee",
+    backgroundColor: "#777"
+  },
+  Input: {
+    flex: 1,
+    height: 40,
+    backgroundColor: "#eee",
+    borderRadius: 4,
+    paddingVertical: 5,
+    paddingHorizontal: 10,
+    borderWidth: 1,
     borderColor: "#eee"
   }
 });
