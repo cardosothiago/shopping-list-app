@@ -11,7 +11,7 @@ Um aplicativo simples e intuitivo, que tem como objetivo entregar aos usuários 
 
 - Instalar o [node & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm);
 - Instalar o [expo-cli](https://docs.expo.dev/get-started/installation/);
-- Clonar o projeto via terminal: `git clone git@github.com:cardosothiago/shopping-list-app.git`;
+- Clonar o projeto via terminal: `git clone https://github.com/cardosothiago/shopping-list-app.git`;
 - Acessar a pasta do projeto via terminal: `cd shopping-list-app`;
 - Instalar dependências do projeto via terminal: `npm install`;
 - Executar o projeto localmente via terminal: `expo start`;
