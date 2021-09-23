@@ -1,12 +1,14 @@
 import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { useEffect, useState } from 'react';
 
 export default function App() {
   return (
     <>
       <View style={styles.container}>
         <View style={styles.Body}>
-          <Text>TELA INICIAL DO APLICATIVO!</Text>
+          <FlatList style={styles.FlatList} />
         </View>
         <View style={styles.Form}>
           <TextInput
@@ -16,13 +18,14 @@ export default function App() {
             placeholder="Adicione um item na sua lista de compras"
             maxLength={100}
           />
-          <TouchableOpacity style={styles.Button} />
+          <TouchableOpacity style={styles.Button}>
+            < Ionicons name="ios-add" size={25} color="#FFF" />
+          </TouchableOpacity>
         </View>
       </View>
     </>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -62,5 +65,9 @@ const styles = StyleSheet.create({
     backgroundColor: "#1c6cce",
     borderRadius: 4,
     marginLeft: 10
+  },
+  FlatList: {
+    flex: 1,
+    marginTop: 5
   }
 });
