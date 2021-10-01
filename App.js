@@ -3,9 +3,17 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Keyboard
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
-  const [task, setTask] = useState([ 'EU', 'TE', 'AMO', '<3']);
-  const [newTask, setNewTask] = useState();
+  const [product, setProduct] = useState([ 'EU', 'TE', 'AMO', '<3']);
+  const [newProduct, setNewProduct] = useState();
 
+
+  async function addProduct() {
+    setProduct([... product, newProduct]);
+  }
+
+  useEffect(() => {
+    console.log(newProduct);
+  }, [newProduct])
 
 
   return (
@@ -20,7 +28,7 @@ export default function App() {
         <View style={styles.Body}>
           <FlatList
           style={styles.FlatList}
-          data={task}
+          data={product}
           keyExtractor={item => item.toString()}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
@@ -44,8 +52,9 @@ export default function App() {
             autoCorrect={true}
             placeholder="Adicione um item na sua lista de compras"
             maxLength={100}
+            onChangeText={text => setNewProduct}
           />
-          <TouchableOpacity style={styles.Button}>
+          <TouchableOpacity style={styles.Button} onPress={() => addProduct()}>
             < Ionicons name="ios-add" size={25} color="#FFF" />
           </TouchableOpacity>
         </View>
