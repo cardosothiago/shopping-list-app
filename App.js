@@ -1,14 +1,41 @@
-import React from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform} from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
 
 export default function App() {
+  const [task, setTask] = useState([ 'EU', 'TE', 'AMO', '<3']);
+  const [newTask, setNewTask] = useState();
+
+
+
   return (
     <>
+    <KeyboardAvoidingView
+      keyboardVerticalOffset={0}
+      behavior="padding"
+      style={{ flex: 1 }}
+      enabled={ Platform.OS == 'ios'}
+    >
       <View style={styles.container}>
         <View style={styles.Body}>
-          <FlatList style={styles.FlatList} />
+          <FlatList
+          style={styles.FlatList}
+          data={task}
+          keyExtractor={item => item.toString()}
+          showsVerticalScrollIndicator={false}
+          renderItem={({ item }) => (
+            <View style={styles.ContainerView}>
+              <Text style={styles.Texto}>{item}</Text>
+              <TouchableOpacity>
+                <MaterialIcons
+                name="delete-forever"
+                size={25}
+                color="red"
+                />
+              </TouchableOpacity>
+            </View>
+          )}
+          />
         </View>
         <View style={styles.Form}>
           <TextInput
@@ -23,6 +50,7 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </View>
+      </KeyboardAvoidingView>
     </>
   );
 }
@@ -69,5 +97,24 @@ const styles = StyleSheet.create({
   FlatList: {
     flex: 1,
     marginTop: 5
+  },
+  ContainerView: {
+    marginBottom: 15,
+    padding: 15,
+    borderRadius: 4,
+    backgroundColor: "#eee",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "space-between",
+    borderWidth: 1,
+    borderColor: "#eee"
+  },
+  Texto: {
+    fontSize: 14,
+    color: "#333",
+    fontWeight: "bold",
+    marginTop: 4,
+    textAlign: "center"
   }
 });
