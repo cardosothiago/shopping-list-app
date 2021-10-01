@@ -9,7 +9,7 @@ Um aplicativo simples e intuitivo, que tem como objetivo entregar aos usuários 
 
 ### Executar:
 
-- Instalar o [node & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm);
+- Instalar o [node & npm](https://balta.io/blog/node-npm-instalacao-configuracao-e-primeiros-passos);
 - Instalar o [expo-cli](https://docs.expo.dev/get-started/installation/);
 - Clonar o projeto via terminal: `git clone https://github.com/cardosothiago/shopping-list-app.git`;
 - Acessar a pasta do projeto via terminal: `cd shopping-list-app`;
