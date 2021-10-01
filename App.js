@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, Keyboard
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
-  const [product, setProduct] = useState([ 'EU', 'TE', 'AMO', '<3']);
+  const [product, setProduct] = useState([ 'teste', 'teste', 'teste', 'teste');
   const [newProduct, setNewProduct] = useState();
 
 
