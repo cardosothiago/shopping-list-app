@@ -1,64 +1,59 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform} from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
-  const [product, setProduct] = useState([ 'teste', 'teste', 'teste', 'teste');
+  const [product, setProduct] = useState(['teste1', 'teste2', 'teste3', 'teste4']);
   const [newProduct, setNewProduct] = useState();
 
 
   async function addProduct() {
-    setProduct([... product, newProduct]);
+    setProduct([...product, newProduct]);
   }
-
-  useEffect(() => {
-    console.log(newProduct);
-  }, [newProduct])
-
 
   return (
     <>
-    <KeyboardAvoidingView
-      keyboardVerticalOffset={0}
-      behavior="padding"
-      style={{ flex: 1 }}
-      enabled={ Platform.OS == 'ios'}
-    >
-      <View style={styles.container}>
-        <View style={styles.Body}>
-          <FlatList
-          style={styles.FlatList}
-          data={product}
-          keyExtractor={item => item.toString()}
-          showsVerticalScrollIndicator={false}
-          renderItem={({ item }) => (
-            <View style={styles.ContainerView}>
-              <Text style={styles.Texto}>{item}</Text>
-              <TouchableOpacity>
-                <MaterialIcons
-                name="delete-forever"
-                size={25}
-                color="red"
-                />
-              </TouchableOpacity>
-            </View>
-          )}
-          />
+      <KeyboardAvoidingView
+        keyboardVerticalOffset={0}
+        behavior="padding"
+        style={{ flex: 1 }}
+        enabled={Platform.OS == 'ios'}
+      >
+        <View style={styles.container}>
+          <View style={styles.Body}>
+            <FlatList
+              style={styles.FlatList}
+              data={product}
+              keyExtractor={item => item.toString()}
+              showsVerticalScrollIndicator={false}
+              renderItem={({ item }) => (
+                <View style={styles.ContainerView}>
+                  <Text style={styles.Texto}>{item}</Text>
+                  <TouchableOpacity>
+                    <MaterialIcons
+                      name="delete-forever"
+                      size={25}
+                      color="red"
+                    />
+                  </TouchableOpacity>
+                </View>
+              )}
+            />
+          </View>
+          <View style={styles.Form}>
+            <TextInput
+              style={styles.Input}
+              placeholderTextColor="#999"
+              autoCorrect={true}
+              placeholder="Adicione um item na sua lista de compras"
+              maxLength={100}
+              onChangeText={text => setNewProduct(text)}
+            />
+            <TouchableOpacity style={styles.Button} onPress={() => addProduct()}>
+              < Ionicons name="ios-add" size={25} color="#FFF" />
+            </TouchableOpacity>
+          </View>
         </View>
-        <View style={styles.Form}>
-          <TextInput
-            style={styles.Input}
-            placeholderTextColor="#999"
-            autoCorrect={true}
-            placeholder="Adicione um item na sua lista de compras"
-            maxLength={100}
-            onChangeText={text => setNewProduct}
-          />
-          <TouchableOpacity style={styles.Button} onPress={() => addProduct()}>
-            < Ionicons name="ios-add" size={25} color="#FFF" />
-          </TouchableOpacity>
-        </View>
-      </View>
       </KeyboardAvoidingView>
     </>
   );
