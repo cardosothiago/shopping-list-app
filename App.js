@@ -1,14 +1,30 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
-  const [product, setProduct] = useState(['teste1', 'teste2', 'teste3', 'teste4']);
-  const [newProduct, setNewProduct] = useState();
+  const [product, setProduct] = useState([]);
+  const [newProduct, setNewProduct] = useState("");
 
 
   async function addProduct() {
+
+    const search = product.filter(product => product.trim() == newProduct.trim());
+
+    if (search.length != 0) {
+      Alert.alert("Produto duplicado!", "Esse produto já está em sua lista de compras!");
+      return;
+    }
+
+    if (newProduct.trim() == "") {
+      Alert.alert("Nome do produto vazio!", "O nome do produto não pode ser vazio!");
+      return;
+    }
+
     setProduct([...product, newProduct]);
+    setNewProduct("");
+
+    Keyboard.dismiss();
   }
 
   return (
@@ -45,9 +61,10 @@ export default function App() {
               style={styles.Input}
               placeholderTextColor="#999"
               autoCorrect={true}
-              placeholder="Adicione um item na sua lista de compras"
+              placeholder="Adicione um item na sua lista de compras..."
               maxLength={100}
               onChangeText={text => setNewProduct(text)}
+              value={newProduct}
             />
             <TouchableOpacity style={styles.Button} onPress={() => addProduct()}>
               < Ionicons name="ios-add" size={25} color="#FFF" />
