@@ -27,6 +27,12 @@ export default function App() {
     Keyboard.dismiss();
   }
 
+  async function removeProduct(item) {
+
+    setProduct(product.filter(products => products != item));
+
+  }
+
   return (
     <>
       <KeyboardAvoidingView
@@ -45,7 +51,7 @@ export default function App() {
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
                   <Text style={styles.Texto}>{item}</Text>
-                  <TouchableOpacity>
+                  <TouchableOpacity onPress={() => removeProduct(item)}>
                     <MaterialIcons
                       name="delete-forever"
                       size={25}
