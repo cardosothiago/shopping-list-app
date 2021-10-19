@@ -29,8 +29,24 @@ export default function App() {
 
   async function removeProduct(item) {
 
-    setProduct(product.filter(products => products != item));
-
+    Alert.alert(
+      "Deletar produto?",
+      "Tem certeza que deseja deletar o produto?",
+      [
+        {
+          text: "Cancelar",
+          onPress: () => {
+            return;
+          },
+          style: "cancel"
+        },
+        {
+          text: "Sim",
+          onPress: () => setProduct(product.filter(products => products != item))
+        }
+      ],
+      { cancelable: false }
+    );
   }
 
   return (
