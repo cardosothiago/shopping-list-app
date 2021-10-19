@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert, AsyncStorage } from 'react-native';
 import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 export default function App() {
@@ -48,6 +48,27 @@ export default function App() {
       { cancelable: false }
     );
   }
+
+
+  useEffect(() => {
+    async function chargeData() {
+      const product = await AsyncStorage.getItem("product");
+
+      if (product) {
+        setProduct(JSON.parse(product));
+      }
+
+    }
+    chargeData();
+  }, []);
+
+  useEffect(() => {
+    async function saveData() {
+      AsyncStorage.setItem("product", JSON.stringify(product))
+    }
+    saveData();
+  }, [product]);
+
 
   return (
     <>
