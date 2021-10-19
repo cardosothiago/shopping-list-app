@@ -90,7 +90,7 @@ export default function App() {
                   <Text style={styles.Texto}>{item}</Text>
                   <TouchableOpacity onPress={() => removeProduct(item)}>
                     <MaterialIcons
-                      name="delete-forever"
+                      name="delete"
                       size={25}
                       color="red"
                     />
