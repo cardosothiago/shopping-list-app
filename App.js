@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert, AsyncStorage, TextBase } from 'react-native';
-import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
+import { Ionicons, Feather, AntDesign } from '@expo/vector-icons';
 
 export default function App() {
   const [product, setProduct] = useState([]);
@@ -49,6 +49,10 @@ export default function App() {
     );
   }
 
+  async function editProduct() {
+    alert("Editado")
+  }
+
 
   useEffect(() => {
     async function chargeData() {
@@ -91,22 +95,22 @@ export default function App() {
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
                   <View style={styles.ContaneirProductNameView}>
-                    <FontAwesome name="reorder" size={20} color="black" width="30" />
                     <Text style={styles.Texto}>{item}</Text>
-                    <View>
-                      <TouchableOpacity>
+                    <View style={styles.EditButton}>
+                      <TouchableOpacity onPress={() => editProduct(item)}>
                         <Feather
                           name="edit"
                           size={15}
                           color="black"
                         />
                       </TouchableOpacity>
+
                     </View>
                   </View>
                   <TouchableOpacity onPress={() => removeProduct(item)}>
-                    <MaterialIcons
+                    <AntDesign
                       name="delete"
-                      size={25}
+                      size={24}
                       color="red"
                     />
                   </TouchableOpacity>
@@ -124,7 +128,7 @@ export default function App() {
               onChangeText={text => setNewProduct(text)}
               value={newProduct}
             />
-            <TouchableOpacity style={styles.Button} onPress={() => addProduct()}>
+            <TouchableOpacity style={styles.AddButton} onPress={() => addProduct()}>
               < Ionicons name="ios-add" size={25} color="#FFF" />
             </TouchableOpacity>
           </View>
@@ -164,7 +168,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "#eee"
   },
-  Button: {
+  AddButton: {
     height: 40,
     width: 40,
     justifyContent: "center",
@@ -199,7 +203,6 @@ const styles = StyleSheet.create({
   },
   Texto: {
     height: 21,
-    width: 80,
     fontSize: 15,
     color: "#333",
     fontWeight: "bold",
@@ -214,5 +217,8 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     marginTop: 4,
     alignSelf: "center"
+  },
+  EditButton: {
+    marginLeft: 5
   }
 });
