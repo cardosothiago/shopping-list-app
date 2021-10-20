@@ -88,13 +88,22 @@ export default function App() {
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
                   <Text style={styles.Texto}>{item}</Text>
-                  <TouchableOpacity onPress={() => removeProduct(item)}>
-                    <MaterialIcons
-                      name="delete"
-                      size={25}
-                      color="red"
-                    />
-                  </TouchableOpacity>
+                  <View style={styles.ButtonsView}>
+                    <TouchableOpacity>
+                      <MaterialIcons
+                        name="edit"
+                        size={28}
+                        color="grey"
+                      />
+                    </TouchableOpacity>
+                    <TouchableOpacity onPress={() => removeProduct(item)}>
+                      <MaterialIcons
+                        name="delete"
+                        size={28}
+                        color="grey"
+                      />
+                    </TouchableOpacity>
+                  </View>
                 </View>
               )}
             />
@@ -172,6 +181,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "space-between",
     borderWidth: 1,
+    borderColor: "#eee"
+  },
+  ButtonsView: {
+    backgroundColor: "#eee",
+    display: 'flex',
+    flexDirection: 'row',
+    alignItems: "center",
+    justifyContent: "space-between",
     borderColor: "#eee"
   },
   Texto: {
