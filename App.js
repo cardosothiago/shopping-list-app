@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert, AsyncStorage } from 'react-native';
-import { Ionicons, MaterialIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, FlatList, KeyboardAvoidingView, Platform, Keyboard, Alert, AsyncStorage, TextBase } from 'react-native';
+import { Ionicons, MaterialIcons, Feather, FontAwesome } from '@expo/vector-icons';
 
 export default function App() {
   const [product, setProduct] = useState([]);
@@ -80,6 +80,9 @@ export default function App() {
       >
         <View style={styles.container}>
           <View style={styles.Body}>
+            <Text style={styles.Title}>
+              Lista de Compras
+            </Text>
             <FlatList
               style={styles.FlatList}
               data={product}
@@ -87,23 +90,26 @@ export default function App() {
               showsVerticalScrollIndicator={false}
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
-                  <Text style={styles.Texto}>{item}</Text>
-                  <View style={styles.ButtonsView}>
-                    <TouchableOpacity>
-                      <MaterialIcons
-                        name="edit"
-                        size={28}
-                        color="grey"
-                      />
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={() => removeProduct(item)}>
-                      <MaterialIcons
-                        name="delete"
-                        size={28}
-                        color="grey"
-                      />
-                    </TouchableOpacity>
+                  <View style={styles.ContaneirProductNameView}>
+                    <FontAwesome name="reorder" size={20} color="black" width="30" />
+                    <Text style={styles.Texto}>{item}</Text>
+                    <View>
+                      <TouchableOpacity>
+                        <Feather
+                          name="edit"
+                          size={15}
+                          color="black"
+                        />
+                      </TouchableOpacity>
+                    </View>
                   </View>
+                  <TouchableOpacity onPress={() => removeProduct(item)}>
+                    <MaterialIcons
+                      name="delete"
+                      size={25}
+                      color="red"
+                    />
+                  </TouchableOpacity>
                 </View>
               )}
             />
@@ -172,18 +178,18 @@ const styles = StyleSheet.create({
     marginTop: 5
   },
   ContainerView: {
-    marginBottom: 15,
-    padding: 15,
+    marginBottom: 13,
+    padding: 10,
     borderRadius: 4,
     backgroundColor: "#eee",
     display: 'flex',
     flexDirection: 'row',
-    alignItems: "center",
+    alignItems: "flex-start",
     justifyContent: "space-between",
     borderWidth: 1,
     borderColor: "#eee"
   },
-  ButtonsView: {
+  ContaneirProductNameView: {
     backgroundColor: "#eee",
     display: 'flex',
     flexDirection: 'row',
@@ -192,10 +198,21 @@ const styles = StyleSheet.create({
     borderColor: "#eee"
   },
   Texto: {
-    fontSize: 14,
+    height: 21,
+    width: 80,
+    fontSize: 15,
     color: "#333",
     fontWeight: "bold",
+    borderRadius: 10,
+    marginTop: 4
+  },
+  Title: {
+    height: 30,
+    fontSize: 20,
+    color: "#333",
+    fontWeight: "bold",
+    borderRadius: 10,
     marginTop: 4,
-    textAlign: "center"
+    alignSelf: "center"
   }
 });
