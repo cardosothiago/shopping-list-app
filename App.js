@@ -49,11 +49,6 @@ export default function App() {
     );
   }
 
-  async function editProduct() {
-    alert("Editado")
-  }
-
-
   useEffect(() => {
     async function chargeData() {
       const product = await AsyncStorage.getItem("product");
@@ -95,17 +90,15 @@ export default function App() {
               renderItem={({ item }) => (
                 <View style={styles.ContainerView}>
                   <View style={styles.ContaneirProductNameView}>
-                    <Text style={styles.Texto}>{item}</Text>
-                    <View style={styles.EditButton}>
-                      <TouchableOpacity onPress={() => editProduct(item)}>
-                        <Feather
-                          name="edit"
-                          size={15}
-                          color="black"
-                        />
-                      </TouchableOpacity>
-
-                    </View>
+                    <TextInput
+                      style={styles.EditInput}
+                      placeholderTextColor="#333"
+                      fontWeight="bold"
+                      autoCorrect={true}
+                      placeholder={item}
+                      maxLength={100}
+                      onChangeText={text => item = text}
+                    />
                   </View>
                   <TouchableOpacity onPress={() => removeProduct(item)}>
                     <AntDesign
@@ -167,6 +160,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
     borderWidth: 1,
     borderColor: "#eee"
+  },
+  EditInput: {
+    flex: 0.93,
+    backgroundColor: "#F5F5F5",
+    paddingVertical: 5,
+    paddingHorizontal: 10
   },
   AddButton: {
     height: 40,
